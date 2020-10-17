@@ -1,0 +1,7 @@
+{
+    "tableName": "recommendation",
+    "partitionKeyName": "user",
+    "partitionKeyType": "S",
+    "sortKeyName": "restaurant",
+    "sortKeyType": "S"
+}
