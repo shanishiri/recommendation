@@ -1,0 +1,42 @@
+{
+    "paths": [
+        {
+            "name": "/myrecommendation",
+            "lambdaFunction": "myRecommendation",
+            "privacy": {
+                "private": true,
+                "auth": [
+                    "/POST",
+                    "/GET",
+                    "/PUT",
+                    "/PATCH",
+                    "/DELETE"
+                ]
+            }
+        }
+    ],
+    "resourceName": "myrecommendationapi",
+    "apiName": "myrecommendationapi",
+    "functionArns": [
+        {
+            "lambdaFunction": "myRecommendation"
+        }
+    ],
+    "privacy": {
+        "auth": 1,
+        "unauth": 0,
+        "authRoleName": "amplify-recommendation-dev-195608-authRole",
+        "unAuthRoleName": "amplify-recommendation-dev-195608-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "myRecommendation",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ],
+    "uuid": "b7a7b678"
+}

@@ -24,6 +24,47 @@
   color: white;
 }
 
+button{
+  font-family: inherit;
+  font-size: 60%;
+  position : center;
+}
+
+form {
+  position : relative;
+  padding: 1em;
+  box-sizing: border-box;
+  display  : grid;
+  grid-gap : 20px;
+  grid-template-columns : repeat(2, 1fr);
+}
+
+#recommendations {
+  text-align: center;
+  /*font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;*/
+  font-family:inherit;
+  border-collapse: collapse;
+  border: 3px solid #ddd;
+  width: 100%;
+}
+
+#recommendations td, #recommendations th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+/*#recommendations tr:nth-child(even){background-color: #f2f2f2;}*/
+
+/*#recommendations tr:hover {background-color: #ddd;}*/
+
+#recommendations th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #4CAF50;
+  color: white;
+}
+
 .App-link {
   color: #61dafb;
 }

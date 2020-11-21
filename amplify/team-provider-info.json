@@ -10,6 +10,11 @@
       "StackName": "amplify-recommendation-dev-195608",
       "StackId": "arn:aws:cloudformation:eu-central-1:962995595416:stack/amplify-recommendation-dev-195608/8de14210-0b19-11eb-8dd8-067c15f30dda",
       "AmplifyAppId": "d1ya9go73klac0"
+    },
+    "categories": {
+      "auth": {
+        "recommendation4a97f66d": {}
+      }
     }
   }
 }

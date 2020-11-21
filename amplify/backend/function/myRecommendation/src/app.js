@@ -12,13 +12,13 @@ if(process.env.ENV && process.env.ENV !== "NONE") {
   tableName = tableName + '-' + process.env.ENV;
 }
 
-const userIdPresent = false; // TODO: update in case is required to use that definition
+const userIdPresent = true;
 const partitionKeyName = "user";
 const partitionKeyType = "S";
 const sortKeyName = "restaurant";
 const sortKeyType = "S";
 const hasSortKey = sortKeyName !== "";
-const path = "/item";
+const path = "/myrecommendation";
 const UNAUTH = 'UNAUTH';
 const hashKeyPath = '/:' + partitionKeyName;
 const sortKeyPath = hasSortKey ? '/:' + sortKeyName : '';
@@ -70,7 +70,16 @@ app.get(path + hashKeyPath, function(req, res) {
     KeyConditions: condition
   }
 
-  dynamodb.query(queryParams, (err, data) => {
+  // dynamodb.query(queryParams, (err, data) => {
+  //   if (err) {
+  //     res.statusCode = 500;
+  //     res.json({error: 'Could not load items: ' + err});
+  //   } else {
+  //     res.json(data.Items);
+  //   }
+  // });
+
+  dynamodb.scan(queryParams, (err, data) => {
     if (err) {
       res.statusCode = 500;
       res.json({error: 'Could not load items: ' + err});
@@ -117,6 +126,7 @@ app.get(path + '/object' + hashKeyPath + sortKeyPath, function(req, res) {
       res.json({error: 'Could not load items: ' + err.message});
     } else {
       if (data.Item) {
+        console.log("response:" + data.item);
         res.json(data.Item);
       } else {
         res.json(data) ;
@@ -158,7 +168,7 @@ app.put(path, function(req, res) {
 app.post(path, function(req, res) {
 
   if (userIdPresent) {
-    req.body['userId'] = req.apiGateway.event.requestContext.identity.cognitoIdentityId || UNAUTH;
+    req.body['user'] = req.apiGateway.event.requestContext.identity.cognitoIdentityId || UNAUTH;
   }
 
   let putItemParams = {
@@ -170,6 +180,7 @@ app.post(path, function(req, res) {
       res.statusCode = 500;
       res.json({error: err, url: req.url, body: req.body});
     } else{
+      console.log("post call succeed! " + data);
       res.json({success: 'post call succeed!', url: req.url, data: data})
     }
   });
